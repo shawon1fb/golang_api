@@ -7,7 +7,6 @@ import (
 	"github.com/shawon1fb/go_api/middle_ware"
 	"github.com/shawon1fb/go_api/token"
 	"net/http"
-	"reflect"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -104,13 +103,8 @@ type loginUserResponse struct {
 }
 
 func (server *Server) loginUser(ctx *gin.Context) {
-	//var req loginUserRequest
-	//if err := ctx.ShouldBindJSON(&req); err != nil {
-	//	fmt.Println("login user error -> ",err)
-	//	ctx.JSON(http.StatusBadRequest, ErrorResponse(err))
-	//	return
-	//}
-	req := ctx.MustGet("user").(middle_ware.UserRequest)
+
+	req := ctx.MustGet(middle_ware.UserData).(middle_ware.UserRequest)
 	user, err := server.store.GetUser(ctx, req.Username)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -145,13 +139,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 
 func (server *Server) getUser(ctx *gin.Context) {
 
-	payload, bl := ctx.Get(authorizationPayloadKey)
-
-	fmt.Println(payload, " existes:=> ", bl)
-	fmt.Println(reflect.TypeOf(payload))
 	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
-
-	fmt.Println(authPayload.Username)
 
 	user, err := server.store.GetUser(ctx, authPayload.Username)
 	if err != nil {

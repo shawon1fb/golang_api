@@ -16,7 +16,10 @@ func errorResponse(err error) gin.H {
 	return gin.H{"error": err.Error()}
 }
 
-//gin
+const (
+	UserData = "UserData"
+)
+
 func LoginUserFilterMiddleware(ck *util.CuckooFilter) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var req UserRequest
@@ -24,13 +27,10 @@ func LoginUserFilterMiddleware(ck *util.CuckooFilter) gin.HandlerFunc {
 			ctx.AbortWithStatusJSON(http.StatusBadRequest, errorResponse(err))
 			return
 		}
-
-
-
 		checkUserExist := ck.LookupItem(req.Username)
 
 		if checkUserExist == true {
-			ctx.Set("user", req)
+			ctx.Set(UserData, req)
 			ctx.Next()
 			return
 		} else {
