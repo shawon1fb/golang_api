@@ -1,15 +1,14 @@
-
 package main
 
 import (
 	"database/sql"
+	"log"
+
 	"github.com/shawon1fb/go_api/api"
 	db "github.com/shawon1fb/go_api/db/sqlc"
 	"github.com/shawon1fb/go_api/util"
-	"log"
 
 	_ "github.com/lib/pq"
-
 )
 
 func main() {
@@ -34,3 +33,5 @@ func main() {
 		log.Fatal("cannot start server:", err)
 	}
 }
+
+/// valo hoye jao masud :)

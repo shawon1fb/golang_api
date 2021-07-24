@@ -89,6 +89,7 @@ func (server *Server) createUser(ctx *gin.Context) {
 
 	server.filter.InsertUniqueItem(rsp.Username)
 
+	
 	ctx.JSON(http.StatusOK, rsp)
 }
 
