@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+
 	"github.com/shawon1fb/go_api/middle_ware"
 
 	db "github.com/shawon1fb/go_api/db/sqlc"
@@ -48,13 +49,14 @@ func (server *Server) setupRouter() {
 	router := gin.Default()
 
 	// router.POST("/users", server.createUser)
+	router.POST("/", server.helloWorld)
 	router.POST("/users", server.createUser)
 	router.POST("/users/login", middle_ware.LoginUserFilterMiddleware(server.filter), server.loginUser)
 
 	authRoutes := router.Group("/").Use(authMiddleware(server.tokenMaker))
 	authRoutes.GET("/users/getUser", server.getUser)
 
-	//authRoutes.POST("/accounts", server.createAccount)
+	// authRoutes.POST("/accounts", server.createAccount)
 	// authRoutes.GET("/accounts/:id", server.getAccount)
 	// authRoutes.GET("/accounts", server.listAccounts)
 

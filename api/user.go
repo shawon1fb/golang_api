@@ -3,11 +3,12 @@ package api
 import (
 	"database/sql"
 	"fmt"
+	"net/http"
+	"time"
+
 	"github.com/pkg/errors"
 	"github.com/shawon1fb/go_api/middle_ware"
 	"github.com/shawon1fb/go_api/token"
-	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
@@ -41,7 +42,6 @@ func newUserResponse(user db.User) userResponse {
 }
 
 func (server *Server) createUser(ctx *gin.Context) {
-
 	var req createUserRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, ErrorResponse(err))
@@ -72,8 +72,7 @@ func (server *Server) createUser(ctx *gin.Context) {
 
 	if err != nil {
 		if pqErr, ok := err.(*pq.Error); ok {
-
-			//fmt.Println(pqErr.Code.Name())
+			// fmt.Println(pqErr.Code.Name())
 			switch pqErr.Code.Name() {
 			case "unique_violation":
 				err2 := errors.New("user already exists")
@@ -88,8 +87,8 @@ func (server *Server) createUser(ctx *gin.Context) {
 	rsp := newUserResponse(user)
 
 	server.filter.InsertUniqueItem(rsp.Username)
-
-	
+	d := server.filter.EncodeItem()
+	fmt.Println(d)
 	ctx.JSON(http.StatusOK, rsp)
 }
 
@@ -104,7 +103,6 @@ type loginUserResponse struct {
 }
 
 func (server *Server) loginUser(ctx *gin.Context) {
-
 	req := ctx.MustGet(middle_ware.UserData).(middle_ware.UserRequest)
 	user, err := server.store.GetUser(ctx, req.Username)
 	if err != nil {
@@ -139,7 +137,6 @@ func (server *Server) loginUser(ctx *gin.Context) {
 }
 
 func (server *Server) getUser(ctx *gin.Context) {
-
 	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
 
 	user, err := server.store.GetUser(ctx, authPayload.Username)
@@ -158,13 +155,9 @@ func (server *Server) getUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, rsp)
 }
 
-/// Hello world
-
-func (server *Server) hello(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, "Hello World!")
-}
-
 /// hello world
 func (server *Server) helloWorld(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, "Hello World!")
+	mp := make(map[string]interface{})
+	mp["msg"] = "Hello world"
+	ctx.JSON(http.StatusOK, mp)
 }

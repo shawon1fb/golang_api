@@ -37,4 +37,9 @@ server:
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/techschool/simplebank/db/sqlc Store
 
-.PHONY: network postgres createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock
+internet:
+	ssh -R 80:localhost:8080 localhost.run
+generate_key:
+	 ssh-keygen.exe
+
+.PHONY: network postgres createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock internet generate_key
