@@ -3,7 +3,7 @@ package middle_ware
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
-	"github.com/shawon1fb/go_api/util"
+	"github.com/shawon1fb/golang_api/util"
 	"net/http"
 )
 

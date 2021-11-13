@@ -3,15 +3,15 @@ package api
 import (
 	"fmt"
 
-	"github.com/shawon1fb/go_api/middle_ware"
+	"github.com/shawon1fb/golang_api/middle_ware"
 
-	db "github.com/shawon1fb/go_api/db/sqlc"
+	db "github.com/shawon1fb/golang_api/db/sqlc"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
-	"github.com/shawon1fb/go_api/token"
-	"github.com/shawon1fb/go_api/util"
+	"github.com/shawon1fb/golang_api/token"
+	"github.com/shawon1fb/golang_api/util"
 )
 
 // Server serves HTTP requests for our banking service.

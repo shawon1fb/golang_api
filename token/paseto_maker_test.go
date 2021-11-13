@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shawon1fb/go_api/util"
+	"github.com/shawon1fb/golang_api/util"
 	"github.com/stretchr/testify/require"
 )
 

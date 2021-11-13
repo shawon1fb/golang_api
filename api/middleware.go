@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shawon1fb/go_api/token"
+	"github.com/shawon1fb/golang_api/token"
 )
 
 const (

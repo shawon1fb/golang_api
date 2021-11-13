@@ -7,13 +7,13 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/shawon1fb/go_api/middle_ware"
-	"github.com/shawon1fb/go_api/token"
+	"github.com/shawon1fb/golang_api/middle_ware"
+	"github.com/shawon1fb/golang_api/token"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
-	db "github.com/shawon1fb/go_api/db/sqlc"
-	"github.com/shawon1fb/go_api/util"
+	db "github.com/shawon1fb/golang_api/db/sqlc"
+	"github.com/shawon1fb/golang_api/util"
 )
 
 type createUserRequest struct {

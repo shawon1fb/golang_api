@@ -8,14 +8,13 @@ import (
 	"testing"
 
 	_ "github.com/lib/pq"
-	"github.com/shawon1fb/go_api/util"
+	"github.com/shawon1fb/golang_api/util"
 )
 
 var testQueries *Queries
 var testDB *sql.DB
 
 func TestMain(m *testing.M) {
-
 
 	fmt.Println("started")
 	config, err := util.LoadConfig("../..")

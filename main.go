@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/shawon1fb/go_api/api"
-	db "github.com/shawon1fb/go_api/db/sqlc"
-	"github.com/shawon1fb/go_api/util"
+	"github.com/shawon1fb/golang_api/api"
+	db "github.com/shawon1fb/golang_api/db/sqlc"
+	"github.com/shawon1fb/golang_api/util"
 
 	_ "github.com/lib/pq"
 )
